@@ -48,7 +48,7 @@
 
 html {
   scroll-behavior: smooth;
-  scroll-padding-top: 80px;
+  scroll-padding-top: 88px;
 }
 
 body {
@@ -110,7 +110,7 @@ em {
 }
 
 .section-intro {
-  font-size: 1.1rem;
+  font-size: 1.15rem;
   color: var(--gray-600);
   max-width: 700px;
   margin-bottom: 3rem;
@@ -186,11 +186,11 @@ em {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  height: 72px;
+  height: 80px;
 }
 
 .nav-logo-img {
-  height: 48px;
+  height: 64px;
   width: auto;
 }
 
@@ -275,7 +275,7 @@ em {
   align-items: center;
   background: linear-gradient(160deg, var(--off-white) 0%, var(--cream) 40%, #e6e9ed 100%);
   overflow: hidden;
-  padding-top: 72px;
+  padding-top: 80px;
 }
 
 .hero-bg-pattern {
@@ -312,7 +312,7 @@ em {
 }
 
 .hero-subtitle {
-  font-size: 1.15rem;
+  font-size: 1.2rem;
   color: var(--gray-600);
   line-height: 1.8;
   margin-bottom: 2.5rem;
@@ -387,7 +387,7 @@ em {
 }
 
 .about-lead {
-  font-size: 1.1rem;
+  font-size: 1.15rem;
   color: var(--gray-800) !important;
 }
 
@@ -491,16 +491,16 @@ em {
 
 .service-card h3 {
   font-family: var(--font-display);
-  font-size: 1.3rem;
+  font-size: 1.35rem;
   font-weight: 600;
   margin-bottom: 0.75rem;
   color: var(--navy);
 }
 
 .service-card p {
-  font-size: 0.92rem;
+  font-size: 0.95rem;
   color: var(--gray-600);
-  line-height: 1.7;
+  line-height: 1.75;
 }
 
 .service-featured {
@@ -648,7 +648,7 @@ em {
 }
 
 .research-card p {
-  font-size: 0.95rem;
+  font-size: 1rem;
   color: var(--gray-600);
   line-height: 1.75;
 }
@@ -698,9 +698,9 @@ em {
 }
 
 .lang-desc {
-  font-size: 0.88rem;
+  font-size: 0.92rem;
   color: var(--gray-600);
-  line-height: 1.65;
+  line-height: 1.7;
 }
 
 /* ============================================
@@ -719,12 +719,12 @@ em {
 
 .expertise-tag {
   font-family: var(--font-body);
-  font-size: 0.88rem;
+  font-size: 0.92rem;
   font-weight: 500;
   color: var(--navy);
   background: var(--white);
   border: 1px solid var(--gray-200);
-  padding: 0.6rem 1.25rem;
+  padding: 0.65rem 1.3rem;
   border-radius: 30px;
   transition: all 0.25s ease;
 }
@@ -880,15 +880,15 @@ em {
 }
 
 .footer-logo {
-  height: 36px;
+  height: 44px;
   width: auto;
   margin-bottom: 0.5rem;
   filter: brightness(1.5) saturate(0.8);
 }
 
 .footer p {
-  font-size: 0.8rem;
-  color: rgba(255, 255, 255, 0.4);
+  font-size: 0.9rem;
+  color: rgba(255, 255, 255, 0.5);
 }
 
 .footer-links {
@@ -897,8 +897,8 @@ em {
 }
 
 .footer-links a {
-  font-size: 0.85rem;
-  color: rgba(255, 255, 255, 0.5);
+  font-size: 0.92rem;
+  color: rgba(255, 255, 255, 0.55);
   transition: color 0.25s ease;
 }
 
@@ -989,7 +989,7 @@ em {
   .nav-links {
     display: none;
     position: absolute;
-    top: 72px;
+    top: 80px;
     left: 0;
     right: 0;
     background: var(--off-white);
