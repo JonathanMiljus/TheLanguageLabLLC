@@ -48,7 +48,7 @@
 
 html {
   scroll-behavior: smooth;
-  scroll-padding-top: 96px;
+  scroll-padding-top: 104px;
 }
 
 body {
@@ -186,20 +186,31 @@ em {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  height: 88px;
+  height: 96px;
 }
 
-/* LOGO FIX — prominent and visible */
+/* LOGO — large and prominent with brand text */
 .nav-logo {
   display: flex;
   align-items: center;
+  gap: 0.75rem;
   flex-shrink: 0;
 }
 
 .nav-logo-img {
-  height: 64px;
+  height: 72px;
   width: auto;
   object-fit: contain;
+}
+
+.nav-logo-text {
+  font-family: var(--font-display);
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--navy);
+  letter-spacing: 0.01em;
+  line-height: 1.2;
+  white-space: nowrap;
 }
 
 .nav-links {
@@ -283,7 +294,7 @@ em {
   align-items: center;
   background: linear-gradient(160deg, var(--off-white) 0%, var(--cream) 40%, #e6e9ed 100%);
   overflow: hidden;
-  padding-top: 88px;
+  padding-top: 96px;
 }
 
 .hero-bg-pattern {
@@ -939,14 +950,27 @@ em {
   align-items: center;
 }
 
-/* FOOTER LOGO FIX — larger and clearly visible */
+/* FOOTER LOGO — larger with brand text */
+.footer-brand {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
 .footer-logo {
-  height: 52px;
+  height: 56px;
   width: auto;
-  margin-bottom: 0.75rem;
-  /* Brighten logo against dark background so it's visible */
+  margin-bottom: 0.5rem;
   filter: brightness(2.2) contrast(0.85);
   opacity: 0.9;
+}
+
+.footer-logo-text {
+  font-family: var(--font-display);
+  font-size: 1.15rem;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.75);
+  margin-bottom: 0.35rem;
 }
 
 .footer p {
@@ -1056,7 +1080,7 @@ em {
   .nav-links {
     display: none;
     position: absolute;
-    top: 88px;
+    top: 96px;
     left: 0;
     right: 0;
     background: var(--off-white);
@@ -1095,6 +1119,10 @@ em {
 
   .nav-toggle {
     display: flex;
+  }
+
+  .nav-logo-text {
+    display: none;
   }
 
   .services-grid {
