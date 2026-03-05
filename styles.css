@@ -48,7 +48,7 @@
 
 html {
   scroll-behavior: smooth;
-  scroll-padding-top: 88px;
+  scroll-padding-top: 96px;
 }
 
 body {
@@ -186,10 +186,10 @@ em {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  height: 80px;
+  height: 88px;
 }
 
-/* LOGO FIX — constrained to nav height with proper padding */
+/* LOGO FIX — prominent and visible */
 .nav-logo {
   display: flex;
   align-items: center;
@@ -197,9 +197,8 @@ em {
 }
 
 .nav-logo-img {
-  height: 48px;
+  height: 64px;
   width: auto;
-  max-height: 48px;
   object-fit: contain;
 }
 
@@ -284,7 +283,7 @@ em {
   align-items: center;
   background: linear-gradient(160deg, var(--off-white) 0%, var(--cream) 40%, #e6e9ed 100%);
   overflow: hidden;
-  padding-top: 80px;
+  padding-top: 88px;
 }
 
 .hero-bg-pattern {
@@ -940,14 +939,14 @@ em {
   align-items: center;
 }
 
-/* FOOTER LOGO FIX — proper size and visibility */
+/* FOOTER LOGO FIX — larger and clearly visible */
 .footer-logo {
-  height: 36px;
+  height: 52px;
   width: auto;
-  margin-bottom: 0.5rem;
+  margin-bottom: 0.75rem;
   /* Brighten logo against dark background so it's visible */
-  filter: brightness(2) contrast(0.9);
-  opacity: 0.85;
+  filter: brightness(2.2) contrast(0.85);
+  opacity: 0.9;
 }
 
 .footer p {
@@ -1057,7 +1056,7 @@ em {
   .nav-links {
     display: none;
     position: absolute;
-    top: 80px;
+    top: 88px;
     left: 0;
     right: 0;
     background: var(--off-white);
