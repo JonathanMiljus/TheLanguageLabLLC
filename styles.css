@@ -189,9 +189,18 @@ em {
   height: 80px;
 }
 
+/* LOGO FIX — constrained to nav height with proper padding */
+.nav-logo {
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+}
+
 .nav-logo-img {
-  height: 64px;
+  height: 48px;
   width: auto;
+  max-height: 48px;
+  object-fit: contain;
 }
 
 .nav-links {
@@ -312,7 +321,7 @@ em {
 }
 
 .hero-subtitle {
-  font-size: 1.2rem;
+  font-size: 1.15rem;
   color: var(--gray-600);
   line-height: 1.8;
   margin-bottom: 2.5rem;
@@ -364,69 +373,6 @@ em {
    ============================================ */
 .section {
   padding: var(--section-pad) 0;
-}
-
-/* ============================================
-   ABOUT
-   ============================================ */
-.about {
-  background: var(--white);
-}
-
-.about-grid {
-  display: grid;
-  grid-template-columns: 1.2fr 0.8fr;
-  gap: 4rem;
-  align-items: start;
-}
-
-.about-main p {
-  margin-bottom: 1.25rem;
-  color: var(--gray-600);
-  line-height: 1.85;
-}
-
-.about-lead {
-  font-size: 1.15rem;
-  color: var(--gray-800) !important;
-}
-
-.about-sidebar {
-  display: flex;
-  flex-direction: column;
-  gap: 1.5rem;
-}
-
-.about-card {
-  background: var(--off-white);
-  border: 1px solid var(--gray-100);
-  border-radius: 8px;
-  padding: 1.5rem;
-  transition: all 0.3s var(--ease-out);
-}
-
-.about-card:hover {
-  border-color: var(--teal);
-  box-shadow: 0 4px 20px rgba(58, 158, 158, 0.08);
-  transform: translateY(-2px);
-}
-
-.about-card-icon {
-  color: var(--teal);
-  margin-bottom: 0.75rem;
-}
-
-.about-card h3 {
-  font-family: var(--font-body);
-  font-size: 1rem;
-  font-weight: 700;
-  margin-bottom: 0.5rem;
-}
-
-.about-card p {
-  font-size: 0.9rem;
-  color: var(--gray-600);
-  line-height: 1.65;
 }
 
 /* ============================================
@@ -519,6 +465,171 @@ em {
   padding: 0.3rem 0.75rem;
   border-radius: 20px;
   margin-bottom: 1rem;
+}
+
+/* ============================================
+   PHILOSOPHY / APPROACH
+   ============================================ */
+.philosophy {
+  background: var(--white);
+}
+
+.philosophy-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+}
+
+.philosophy-card {
+  background: var(--off-white);
+  border: 1px solid var(--gray-100);
+  border-radius: 8px;
+  padding: 2rem;
+  transition: all 0.35s var(--ease-out);
+}
+
+.philosophy-card:hover {
+  border-color: var(--teal);
+  transform: translateY(-3px);
+  box-shadow: 0 8px 30px rgba(26, 39, 68, 0.06);
+}
+
+.philosophy-card h3 {
+  font-family: var(--font-display);
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: var(--navy);
+  margin-bottom: 0.75rem;
+}
+
+.philosophy-card p {
+  font-size: 0.95rem;
+  color: var(--gray-600);
+  line-height: 1.75;
+}
+
+.philosophy-featured {
+  grid-column: 1 / -1;
+  background: var(--navy);
+  border-color: var(--navy);
+}
+
+.philosophy-featured h3 {
+  color: var(--white);
+}
+
+.philosophy-featured p {
+  color: rgba(255, 255, 255, 0.85);
+}
+
+/* ============================================
+   ABOUT
+   ============================================ */
+.about {
+  background: var(--off-white);
+}
+
+.about-grid {
+  display: grid;
+  grid-template-columns: 1.2fr 0.8fr;
+  gap: 4rem;
+  align-items: start;
+}
+
+.about-main p {
+  margin-bottom: 1.25rem;
+  color: var(--gray-600);
+  line-height: 1.85;
+}
+
+.about-lead {
+  font-size: 1.15rem;
+  color: var(--gray-800) !important;
+}
+
+.about-sidebar {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.about-card {
+  background: var(--white);
+  border: 1px solid var(--gray-100);
+  border-radius: 8px;
+  padding: 1.5rem;
+  transition: all 0.3s var(--ease-out);
+}
+
+.about-card:hover {
+  border-color: var(--teal);
+  box-shadow: 0 4px 20px rgba(58, 158, 158, 0.08);
+  transform: translateY(-2px);
+}
+
+.about-card-icon {
+  color: var(--teal);
+  margin-bottom: 0.75rem;
+}
+
+.about-card h3 {
+  font-family: var(--font-body);
+  font-size: 1rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+}
+
+.about-card p {
+  font-size: 0.9rem;
+  color: var(--gray-600);
+  line-height: 1.65;
+}
+
+/* ============================================
+   LANGUAGES — Flow Layout (not boxed cards)
+   ============================================ */
+.languages {
+  background: var(--white);
+}
+
+.languages-flow {
+  max-width: 800px;
+}
+
+.lang-item {
+  padding: 1.25rem 0;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.5rem 1.25rem;
+}
+
+.lang-name-inline {
+  font-family: var(--font-display);
+  font-size: 1.35rem;
+  font-weight: 700;
+  color: var(--navy);
+  flex-shrink: 0;
+}
+
+.lang-alt {
+  font-size: 0.95rem;
+  font-weight: 400;
+  color: var(--gray-400);
+  font-family: var(--font-body);
+}
+
+.lang-role {
+  font-size: 0.95rem;
+  color: var(--gray-600);
+  line-height: 1.7;
+  flex: 1;
+  min-width: 250px;
+}
+
+.lang-divider {
+  height: 1px;
+  background: var(--gray-100);
 }
 
 /* ============================================
@@ -651,56 +762,6 @@ em {
   font-size: 1rem;
   color: var(--gray-600);
   line-height: 1.75;
-}
-
-/* ============================================
-   LANGUAGES
-   ============================================ */
-.languages {
-  background: var(--white);
-}
-
-.languages-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 1.25rem;
-}
-
-.lang-card {
-  background: var(--off-white);
-  border: 1px solid var(--gray-100);
-  border-radius: 8px;
-  padding: 1.75rem;
-  transition: all 0.3s var(--ease-out);
-}
-
-.lang-card:hover {
-  border-color: var(--teal);
-  transform: translateY(-2px);
-  box-shadow: 0 6px 24px rgba(26, 39, 68, 0.06);
-}
-
-.lang-name {
-  font-family: var(--font-display);
-  font-size: 1.4rem;
-  font-weight: 700;
-  color: var(--navy);
-  margin-bottom: 0.25rem;
-}
-
-.lang-level {
-  font-size: 0.78rem;
-  font-weight: 700;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: var(--teal);
-  margin-bottom: 0.75rem;
-}
-
-.lang-desc {
-  font-size: 0.92rem;
-  color: var(--gray-600);
-  line-height: 1.7;
 }
 
 /* ============================================
@@ -879,11 +940,14 @@ em {
   align-items: center;
 }
 
+/* FOOTER LOGO FIX — proper size and visibility */
 .footer-logo {
-  height: 44px;
+  height: 36px;
   width: auto;
   margin-bottom: 0.5rem;
-  filter: brightness(1.5) saturate(0.8);
+  /* Brighten logo against dark background so it's visible */
+  filter: brightness(2) contrast(0.9);
+  opacity: 0.85;
 }
 
 .footer p {
@@ -962,6 +1026,14 @@ em {
     grid-template-columns: 1fr 1fr;
   }
 
+  .philosophy-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .philosophy-featured {
+    grid-column: 1 / -1;
+  }
+
   .credentials-grid {
     grid-template-columns: 1fr;
     gap: 2.5rem;
@@ -973,10 +1045,6 @@ em {
 
   .research-featured {
     grid-column: auto;
-  }
-
-  .languages-grid {
-    grid-template-columns: 1fr 1fr;
   }
 
   .contact-grid {
@@ -1034,8 +1102,12 @@ em {
     grid-template-columns: 1fr;
   }
 
-  .languages-grid {
+  .philosophy-grid {
     grid-template-columns: 1fr;
+  }
+
+  .philosophy-featured {
+    grid-column: auto;
   }
 
   .diff-grid {
@@ -1055,6 +1127,11 @@ em {
   .footer-links {
     flex-wrap: wrap;
     justify-content: center;
+  }
+
+  .lang-item {
+    flex-direction: column;
+    gap: 0.25rem;
   }
 }
 
