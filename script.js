@@ -41,9 +41,10 @@ document.addEventListener('DOMContentLoaded', () => {
     '.section-label, .section-title, .section-intro, ' +
     '.about-main p, .about-card, ' +
     '.service-card, ' +
+    '.philosophy-card, ' +
     '.credential-group, ' +
     '.research-card, ' +
-    '.lang-card, ' +
+    '.lang-item, ' +
     '.expertise-tag, ' +
     '.contact-info, .contact-form-wrapper, ' +
     '.hero-text, .hero-image'
@@ -87,8 +88,6 @@ document.addEventListener('DOMContentLoaded', () => {
   const form = document.getElementById('contactForm');
   if (form) {
     form.addEventListener('submit', function(e) {
-      // If using Formspree or similar, let it handle naturally
-      // If no backend, show a thank-you message
       const action = form.getAttribute('action');
       if (action.includes('YOUR_FORM_ID')) {
         e.preventDefault();
@@ -100,7 +99,7 @@ document.addEventListener('DOMContentLoaded', () => {
               <polyline points="22 4 12 14.01 9 11.01"/>
             </svg>
             <h3 style="font-family: 'Cormorant Garamond', Georgia, serif; color: #1a2744; margin-bottom: 0.5rem;">Message Received</h3>
-            <p style="color: #6b6760; font-size: 0.95rem;">Thank you for reaching out. I'll get back to you within 24–48 hours.</p>
+            <p style="color: #6b6760; font-size: 0.95rem;">Thank you for reaching out. We'll get back to you within 24–48 hours.</p>
           </div>
         `;
       }
