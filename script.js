@@ -84,25 +84,67 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-  // ---- Contact Form Handling ----
+  // ---- Contact Form Handling (mailto-based) ----
+  // Builds a clean mailto: link from the form fields and opens the user's
+  // mail client. Works without a backend; messages still arrive at the
+  // jonathan@thelanguagelaboratory.org inbox as soon as the user hits Send
+  // in their mail client.
   const form = document.getElementById('contactForm');
   if (form) {
     form.addEventListener('submit', function(e) {
-      const action = form.getAttribute('action');
-      if (action.includes('YOUR_FORM_ID')) {
-        e.preventDefault();
+      e.preventDefault();
+
+      const get = (id) => (document.getElementById(id) || {}).value || '';
+      const name         = get('name').trim();
+      const email        = get('email').trim();
+      const organization = get('organization').trim();
+      const interest     = get('interest').trim();
+      const message      = get('message').trim();
+
+      const interestLabel = (() => {
+        const sel = document.getElementById('interest');
+        if (!sel) return interest;
+        const opt = sel.options[sel.selectedIndex];
+        return opt && opt.value ? opt.text : '';
+      })();
+
+      const subject = interestLabel
+        ? `Inquiry: ${interestLabel} — ${name || 'Website'}`
+        : `Website inquiry from ${name || 'visitor'}`;
+
+      const bodyLines = [
+        `Name: ${name}`,
+        `Email: ${email}`,
+        organization ? `Organization: ${organization}` : null,
+        interestLabel ? `Interested in: ${interestLabel}` : null,
+        '',
+        'Message:',
+        message,
+        '',
+        '— Sent from thelanguagelaboratory.org contact form'
+      ].filter(Boolean);
+
+      const mailto = 'mailto:jonathan@thelanguagelaboratory.org'
+        + '?subject=' + encodeURIComponent(subject)
+        + '&body='    + encodeURIComponent(bodyLines.join('\n'));
+
+      window.location.href = mailto;
+
+      // Show a friendly confirmation in case the mail client opens in a new window.
+      setTimeout(() => {
         const wrapper = document.querySelector('.contact-form-wrapper');
+        if (!wrapper) return;
         wrapper.innerHTML = `
           <div style="text-align:center; padding: 3rem 1rem;">
             <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#3a9e9e" stroke-width="2" style="margin-bottom: 1rem;">
               <path d="M22 11.08V12a10 10 0 11-5.93-9.14"/>
               <polyline points="22 4 12 14.01 9 11.01"/>
             </svg>
-            <h3 style="font-family: 'Cormorant Garamond', Georgia, serif; color: #1a2744; margin-bottom: 0.5rem;">Message Received</h3>
-            <p style="color: #6b6760; font-size: 0.95rem;">Thank you for reaching out. We'll get back to you within 24–48 hours.</p>
+            <h3 style="font-family: 'Cormorant Garamond', Georgia, serif; color: #1a2744; margin-bottom: 0.5rem;">Your mail app should be open</h3>
+            <p style="color: #6b6760; font-size: 0.95rem;">If nothing happened, just email <a href="mailto:jonathan@thelanguagelaboratory.org" style="color:#3a9e9e;">jonathan@thelanguagelaboratory.org</a> directly. Replies usually within 24&ndash;48 hours.</p>
           </div>
         `;
-      }
+      }, 400);
     });
   }
 

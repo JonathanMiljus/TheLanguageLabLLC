@@ -945,9 +945,10 @@ em {
 }
 
 .footer-inner {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+  display: grid;
+  grid-template-columns: 2fr 1fr 1.3fr 1.3fr;
+  gap: 2.5rem;
+  align-items: flex-start;
 }
 
 /* FOOTER LOGO — larger with brand text */
@@ -1166,5 +1167,129 @@ em {
   .diff-grid {
     grid-template-columns: 1fr;
     gap: 1.25rem;
+  }
+}
+
+/* ============================================
+   ADDITIONS — Dual-track positioning, footer columns, contact extras
+   ============================================ */
+
+/* Slightly tinted background for the "For Organizations" services
+   block so it reads as a distinct second track. */
+.services-org {
+  background: linear-gradient(180deg, rgba(58, 158, 158, 0.045) 0%, rgba(58, 158, 158, 0) 100%);
+  border-top: 1px solid rgba(26, 39, 68, 0.06);
+  border-bottom: 1px solid rgba(26, 39, 68, 0.06);
+}
+
+.section-cta-line {
+  text-align: center;
+  margin-top: 2.5rem;
+  font-size: 0.98rem;
+  color: var(--ink-soft, #6b6760);
+}
+
+.section-cta-line a {
+  color: #3a9e9e;
+  font-weight: 600;
+  text-decoration: none;
+  border-bottom: 1px solid rgba(58, 158, 158, 0.35);
+  transition: border-color 0.2s ease;
+}
+
+.section-cta-line a:hover {
+  border-bottom-color: #3a9e9e;
+}
+
+/* Inline links inside service-card body copy */
+.service-card a {
+  color: #3a9e9e;
+  font-weight: 500;
+  text-decoration: none;
+  border-bottom: 1px dotted rgba(58, 158, 158, 0.45);
+  transition: color 0.2s ease, border-color 0.2s ease;
+}
+
+.service-card a:hover {
+  color: #2c7a7a;
+  border-bottom-color: #2c7a7a;
+}
+
+/* Contact form helper text */
+.form-note {
+  margin-top: 0.85rem;
+  font-size: 0.82rem;
+  line-height: 1.5;
+  color: rgba(107, 103, 96, 0.85);
+  text-align: center;
+}
+
+/* Make the LinkedIn label visible next to the icon */
+.social-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.social-link-label {
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: rgba(26, 39, 68, 0.85);
+}
+
+.social-link:hover .social-link-label {
+  color: #3a9e9e;
+}
+
+/* Footer columns */
+.footer-tag {
+  font-size: 0.8rem !important;
+  color: rgba(255, 255, 255, 0.4) !important;
+  margin-top: 0.35rem;
+  font-style: italic;
+}
+
+.footer-col h4 {
+  font-family: var(--font-display);
+  font-size: 1rem;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.85);
+  margin-bottom: 0.85rem;
+  letter-spacing: 0.02em;
+}
+
+.footer-col ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.footer-col li {
+  margin-bottom: 0.55rem;
+}
+
+.footer-col a {
+  font-size: 0.92rem;
+  color: rgba(255, 255, 255, 0.6);
+  text-decoration: none;
+  transition: color 0.2s ease;
+  word-break: break-word;
+}
+
+.footer-col a:hover {
+  color: var(--gold-light, #d4b572);
+}
+
+@media (max-width: 960px) {
+  .footer-inner {
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+  }
+}
+
+@media (max-width: 600px) {
+  .footer-inner {
+    grid-template-columns: 1fr;
+    gap: 2rem;
   }
 }
