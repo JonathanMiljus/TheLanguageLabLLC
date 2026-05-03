@@ -47,7 +47,9 @@ document.addEventListener('DOMContentLoaded', () => {
     '.lang-item, ' +
     '.expertise-tag, ' +
     '.contact-info, .contact-form-wrapper, ' +
-    '.hero-text, .hero-image'
+    '.hero-text, .hero-image, ' +
+    '.framework-stage, .framework-diagram, ' +
+    '.work-card, .engage-card, .engage-cta'
   );
 
   fadeTargets.forEach(el => el.classList.add('fade-in'));
@@ -55,7 +57,6 @@ document.addEventListener('DOMContentLoaded', () => {
   const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
-        // Add stagger delay for grouped items
         const parent = entry.target.parentElement;
         if (parent) {
           const siblings = Array.from(parent.children).filter(c => c.classList.contains('fade-in'));
@@ -84,67 +85,55 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-  // ---- Contact Form Handling (mailto-based) ----
-  // Builds a clean mailto: link from the form fields and opens the user's
-  // mail client. Works without a backend; messages still arrive at the
-  // jonathan@thelanguagelaboratory.org inbox as soon as the user hits Send
-  // in their mail client.
+  // ---- Contact Form (FormSubmit-relayed) ----
+  // The form action posts to https://formsubmit.co/<email>, which forwards
+  // the submission as an email. Activation: the FIRST submission triggers
+  // a one-time confirmation email to Jonathan; he clicks the link once and
+  // every subsequent submission delivers automatically.
+  // We intercept with fetch() to keep the visitor on the page and show an
+  // in-place thank-you state on success. If JS fails, the native form
+  // submission still works as a fallback (FormSubmit will redirect them
+  // to a confirmation page).
   const form = document.getElementById('contactForm');
   if (form) {
-    form.addEventListener('submit', function(e) {
+    form.addEventListener('submit', async function(e) {
       e.preventDefault();
-
-      const get = (id) => (document.getElementById(id) || {}).value || '';
-      const name         = get('name').trim();
-      const email        = get('email').trim();
-      const organization = get('organization').trim();
-      const interest     = get('interest').trim();
-      const message      = get('message').trim();
-
-      const interestLabel = (() => {
-        const sel = document.getElementById('interest');
-        if (!sel) return interest;
-        const opt = sel.options[sel.selectedIndex];
-        return opt && opt.value ? opt.text : '';
-      })();
-
-      const subject = interestLabel
-        ? `Inquiry: ${interestLabel} — ${name || 'Website'}`
-        : `Website inquiry from ${name || 'visitor'}`;
-
-      const bodyLines = [
-        `Name: ${name}`,
-        `Email: ${email}`,
-        organization ? `Organization: ${organization}` : null,
-        interestLabel ? `Interested in: ${interestLabel}` : null,
-        '',
-        'Message:',
-        message,
-        '',
-        '— Sent from thelanguagelaboratory.org contact form'
-      ].filter(Boolean);
-
-      const mailto = 'mailto:jonathan@thelanguagelaboratory.org'
-        + '?subject=' + encodeURIComponent(subject)
-        + '&body='    + encodeURIComponent(bodyLines.join('\n'));
-
-      window.location.href = mailto;
-
-      // Show a friendly confirmation in case the mail client opens in a new window.
-      setTimeout(() => {
+      const submitBtn = form.querySelector('button[type="submit"]');
+      const originalLabel = submitBtn ? submitBtn.textContent : '';
+      if (submitBtn) {
+        submitBtn.disabled = true;
+        submitBtn.textContent = 'Sending…';
+      }
+      try {
+        const res = await fetch(form.action, {
+          method: 'POST',
+          body: new FormData(form),
+          headers: { 'Accept': 'application/json' }
+        });
+        if (!res.ok) throw new Error('FormSubmit returned ' + res.status);
         const wrapper = document.querySelector('.contact-form-wrapper');
-        if (!wrapper) return;
-        wrapper.innerHTML = `
-          <div style="text-align:center; padding: 3rem 1rem;">
-            <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#3a9e9e" stroke-width="2" style="margin-bottom: 1rem;">
-              <path d="M22 11.08V12a10 10 0 11-5.93-9.14"/>
-              <polyline points="22 4 12 14.01 9 11.01"/>
-            </svg>
-            <h3 style="font-family: 'Cormorant Garamond', Georgia, serif; color: #1a2744; margin-bottom: 0.5rem;">Your mail app should be open</h3>
-            <p style="color: #6b6760; font-size: 0.95rem;">If nothing happened, just email <a href="mailto:jonathan@thelanguagelaboratory.org" style="color:#3a9e9e;">jonathan@thelanguagelaboratory.org</a> directly. Replies usually within 24&ndash;48 hours.</p>
-          </div>
-        `;
-      }, 400);
+        if (wrapper) {
+          wrapper.innerHTML = `
+            <div style="text-align:center; padding: 3rem 1rem;">
+              <svg width="56" height="56" viewBox="0 0 24 24" fill="none" stroke="#3a9e9e" stroke-width="2" style="margin-bottom: 1.25rem;">
+                <path d="M22 11.08V12a10 10 0 11-5.93-9.14"/>
+                <polyline points="22 4 12 14.01 9 11.01"/>
+              </svg>
+              <h3 style="font-family: 'Cormorant Garamond', Georgia, serif; color: #1a2744; margin-bottom: 0.5rem; font-size: 1.5rem;">Message sent</h3>
+              <p style="color: #6b6760; font-size: 0.98rem; line-height: 1.6; max-width: 380px; margin: 0 auto;">
+                Thank you for reaching out. Jonathan replies personally, usually within 24&ndash;48 hours.
+              </p>
+            </div>
+          `;
+        }
+      } catch (err) {
+        // Fall back to the native form submission so the visitor still gets through
+        if (submitBtn) {
+          submitBtn.disabled = false;
+          submitBtn.textContent = originalLabel;
+        }
+        form.submit();
+      }
     });
   }
 
