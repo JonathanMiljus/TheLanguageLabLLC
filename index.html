@@ -565,8 +565,12 @@
           </div>
         </div>
         <div class="contact-form-wrapper">
-          <form class="contact-form" id="contactForm" action="mailto:jonathan@thelanguagelaboratory.org" method="POST" enctype="text/plain">
-            <div class="form-group">
+        <form class="contact-form" id="contactForm" action="https://formsubmit.co/jonathan@thelanguagelaboratory.org" method="POST">
+                    <input type="hidden" name="_subject" value="New inquiry via thelanguagelaboratory.org">
+                    <input type="hidden" name="_template" value="table">
+                    <input type="hidden" name="_captcha" value="false">
+                    <input type="hidden" name="_next" value="https://www.thelanguagelaboratory.org/?sent=1">
+          <div class="form-group">
               <label for="name">Name</label>
               <input type="text" id="name" name="name" required>
             </div>
@@ -606,8 +610,8 @@
               <textarea id="message" name="message" rows="5" required></textarea>
             </div>
             <button type="submit" class="btn btn-primary btn-full">Send Message</button>
-            <p class="form-note">This form opens your email client with the message ready to send to jonathan@thelanguagelaboratory.org. If your browser doesn't open a mail app, just email directly.</p>
-          </form>
+            <p class="form-note">Submissions go straight to Jonathan's inbox. Replies usually arrive within 24&ndash;48 hours.</p>
+        </form>
         </div>
       </div>
     </div>
